@@ -1,35 +1,80 @@
-<template>
-  <nav class="top-nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/testing">Testing</router-link>
-    <router-link to="/test/123">Test ID 123</router-link>
-  </nav>
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+</script>
 
-  <router-view />
+<template>
+  <header>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+      <RouterLink :to="{ name: 'test_w_id', params: { id: 17 } }">test</RouterLink>
+      <RouterLink to="/fun">FUN</RouterLink>
+    </nav>
+  </header>
+
+  <RouterView />
 </template>
 
 <style scoped>
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+nav {
   width: 100%;
-  padding: 12px 16px;
-  background: #f3f3f3;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  gap: 20px;
-  font-size: 18px;
-  z-index: 10;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
 }
 
-.top-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
+nav a.router-link-exact-active {
+  color: var(--color-text);
 }
 
-.top-nav a.router-link-active {
-  color: #007bff;
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
 }
 </style>
