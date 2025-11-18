@@ -9,24 +9,23 @@ const router = useRouter()
 const route = useRoute()
 
 const test_source = computed(() =>
-    doc(db, 'tests', route.params.id)
+    doc(db, 'Test', route.params.id)
 )
 
-const test = useDocument(test_source)
+const tester = useDocument(test_source)
 
-watch(test, (new_data, old_data)=>{
+watch(tester, (new_data, old_data)=>{
   if (! new_data) {
     router.push("/")
   }
 })
+
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'test_w_id', params: { id: 'b3LKbwD0rv65G8EnvYoY' } }">test</RouterLink>
-  <RouterLink :to="{ name: 'test_w_id', params: { id: '78bhKDifBy1sbZodcdZp' } }">other test</RouterLink>
-  <RouterLink :to="{ name: 'test_w_id', params: { id: '12' } }">third test</RouterLink>
+  <RouterLink :to="{ name: 'test_w_id', params: { id: 'hT93tGRYXle0YwBrTEHy' } }">test</RouterLink>
 
-  {{test}}
+  {{tester}}
 </template>
 
 <style scoped></style>
